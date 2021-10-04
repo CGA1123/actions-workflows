@@ -3,7 +3,16 @@ on:
   workflow_dispatch:
   
 jobs:
-  echo:
+  generate-greeting:
     runs-on: self-hosted
+    outputs:
+      greeting: ${{ steps.generator.outputs.greeting }}
     steps:
-    - run: echo "hello"
+      - id: generator
+        run: echo "::set-output name=greeting::hello"
+
+  print-greeting:
+    needs: generate-greeting
+    runs-on: ubuntu-20.04
+    steps:
+      - run: echo ${{ needs.generate-greeting.outputs.greeting }}
