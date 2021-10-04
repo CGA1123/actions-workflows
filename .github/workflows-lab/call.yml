@@ -1,0 +1,6 @@
+on:
+  workflow_dispatch:
+  
+jobs:
+  call:
+    uses: CGA1123/actions-workflows/.github/workflows/called.yml@main
