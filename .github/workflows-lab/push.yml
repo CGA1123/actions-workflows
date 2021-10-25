@@ -5,4 +5,4 @@ jobs:
   foo:
     runs-on: ubuntu-latest
     steps:
-      run: echo "hello 👋"
+      - run: echo "hello 👋"
