@@ -1,0 +1,16 @@
+name: Called Workflow Outputs
+on:
+  workflow_call:
+    outputs:
+      workflow_output:
+        description: An output
+        value: ${{ jobs.my_job.outputs.job_output }}
+
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+    outputs:
+      job_output: ${{ steps.my_step.outputs.step_output }}
+    steps:
+      - run: echo "::set-output name=step_output::a_step_output"
+        id: my_step
