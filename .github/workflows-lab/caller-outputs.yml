@@ -1,0 +1,16 @@
+name: Callable Workflow Outputs
+
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: "*/30 * * * *"
+
+jobs:
+  called:
+    uses: CGA1123/actions-workflows/.github/workflows-lab/called-outputs.yml@main
+
+  verify:
+    runs-on: ubuntu-latest
+    needs: [called]
+    steps:
+      - run: [[ "a_step_output" == "${{ needs.called.outputs.workflow_output }}" ]]
