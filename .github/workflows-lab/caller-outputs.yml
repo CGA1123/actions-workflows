@@ -2,8 +2,6 @@ name: Callable Workflow Outputs
 
 on:
   workflow_dispatch:
-  schedule:
-  - cron: "*/30 * * * *"
 
 jobs:
   called:
@@ -13,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     needs: [called]
     steps:
-      - run: [[ "a_step_output" == "${{ needs.called.outputs.workflow_output }}" ]]
+      - run: "[[ a_step_output == ${{ needs.called.outputs.workflow_output }} ]]"
