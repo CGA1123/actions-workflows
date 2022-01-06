@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch:
+  
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ env.GITHUB_REF_NAME }}
+      - run: echo ${{ contains(env.GITHUB_REF_NAME, 'main') }}
+      - run: echo ${{ toJSON(contains(env.GITHUB_REF_NAME, 'main')) }}
+      - run: echo ${{ toJSON(contains(env.GITHUB_REF_NAME, 'main') == false ) }}
+      - run: echo ${{ contains(env.GITHUB_REF_NAME, 'main') == false }}
+      - run: echo ${{ github.ref_name }}
+      - run: echo ${{ contains(github.ref_name, 'main') }}
+      - run: echo ${{ toJSON(contains(github.ref_name, 'main')) }}
+      - run: echo ${{ toJSON(contains(github.ref_name, 'main') == false ) }}
+      - run: echo ${{ contains(github.ref_name, 'main') == false }}
+      - run: cat ${GITHUB_EVENT_PATH}
